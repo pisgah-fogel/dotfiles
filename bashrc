@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-PS1='\[\e[1m[\w]\n\]\[\e[1m\] \$ > \[\e[0m\]'
+PS1='\[\e[1m[\w]\]\n\[\e[1m\] \$ > \[\e[0m\]'
 
 if [ -e ~/.bashrc.aliases ] ; then
    source ~/.bashrc.aliases
