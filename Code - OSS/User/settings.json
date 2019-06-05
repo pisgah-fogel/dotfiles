@@ -1125,7 +1125,63 @@
                     "args": []
                 }
             ]
-        }
+        },
+        {
+            "before": [
+                "<leader>",
+                "m",
+                "c"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.tasks.runTask",
+                    "args": "Rust: cargo build"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "m",
+                "x"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.tasks.runTask",
+                    "args": "Rust: cargo run"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "m",
+                "t"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.tasks.runTask",
+                    "args": "Rust: cargo test"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "m",
+                "<leader>"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.tasks.runTask",
+                    "args": "Rust: cargo check"
+                }
+            ]
+        },
     ],
     "vim.insertModeKeyBindings": [
         {
