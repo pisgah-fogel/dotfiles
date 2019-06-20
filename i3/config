@@ -30,6 +30,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+x exec termite
+bindsym $mod+Shift+x exec cool-retro-term
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -42,10 +43,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ntilde focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+ntilde focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -125,7 +126,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # lock
-bindsym $mod+Shift+x exec i3lock --color 475263
+bindsym $mod+l exec i3lock
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -221,8 +222,9 @@ bindsym $mod+F7 exec mocp --previous
 bindsym $mod+F8 exec mocp --next
 
 # App shortcuts
-bindsym $mod+c exec "/usr/bin/chromium"
-bindsym $mod+n exec "/usr/bin/thunar"
+#bindsym $mod+c exec "/usr/bin/chromium"
+bindsym $mod+c exec "/usr/bin/midori"
+bindsym $mod+n exec "/usr/bin/thunar" # xfce file manager
 
 # Redirect sound to headphones
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
