@@ -11,9 +11,10 @@ PS1='\[\e[1m[\w]\]\n\[\e[1m\] \$ > \[\e[0m\]'
 if [ -e ~/.bashrc.aliases ] ; then
    source ~/.bashrc.aliases
 fi
-# >>> Added by cnchi installer
-BROWSER=/usr/bin/chromium
-EDITOR=/usr/bin/nano
+BROWSER=firefox
+EDITO=vim
 
 alias sm="emacsclient -nw -s spacemacs"
 alias smgui="emacsclient -nc -s spacemacs"
+alias vi="nvim"
+alias vim="nvim"
