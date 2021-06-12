@@ -50,6 +50,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# List autocompletion like DOS but first prints all options
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
