@@ -75,3 +75,8 @@ then
 	export PATH="$PATH:$HOME/.local/bin"
 	. "$HOME/.cargo/env"
 fi
+
+if [ -e "$HOME/.local/share/blesh/ble.sh" ]
+then
+	source ~/.local/share/blesh/ble.sh
+fi
