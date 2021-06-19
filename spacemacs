@@ -573,6 +573,10 @@ you should place your code here."
   (require 'rtags)
   (cmake-ide-setup)
 
+  ;; GAS assembler programming
+  (require 'gas-mode)
+  (add--to-list 'auto-mode-alist '("\\.S\\'" . gas-mode))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

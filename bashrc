@@ -80,3 +80,5 @@ if [ -e "$HOME/.local/share/blesh/ble.sh" ]
 then
 	source ~/.local/share/blesh/ble.sh
 fi
+
+#source /usr/local/bin/virtualenvwrapper.sh
