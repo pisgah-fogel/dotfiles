@@ -57,7 +57,9 @@ bind 'TAB:menu-complete'
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
+alias ls="exa -l"
+alias cat='batcat'
 PS1='\[\e[1m[\w]\]\n\[\e[1m\] \$ > \[\e[0m\]'
 
 if [ -e ~/.bashrc.aliases ] ; then
