@@ -213,3 +213,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 " Add symtax for verilog
 au BufNewFile,BufRead *.sv,*.v so ~/.vim/verilog.vim
+
+" Avoid UTF-8 problem
+set nobomb
