@@ -60,6 +60,7 @@ bind 'TAB:menu-complete'
 #alias ls='ls --color=auto'
 alias ls="exa -l"
 alias cat='batcat'
+alias py='python3'
 PS1='\[\e[1m[\w]\]\n\[\e[1m\] \$ > \[\e[0m\]'
 
 if [ -e ~/.bashrc.aliases ] ; then
@@ -84,3 +85,22 @@ then
 fi
 
 #source /usr/local/bin/virtualenvwrapper.sh
+
+function prj {
+	echo "Openning vim in the repository"
+	echo " 1 - Altair"
+	echo " 2 - VHDLetor"
+	echo " > "
+	read in
+	if [[ $in == "1" ]]
+	then
+		cd /data/projects/Altair/
+		vim -S /data/projects/Altair.vim
+	elif [[ $in == "2" ]]
+	then
+		cd /data/projects/VHDLetor/
+		vim -S /data/projects/VHDLetor.vim
+	else
+		echo "No option: $in"
+	fi
+}
