@@ -60,19 +60,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" Use spaces instead of tabs
-"set expandtab
-
-" Be smart when using tabs
-set smarttab
-
-" 1 tab = 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-set ai "Auto indent
-set si "Smart indent
-"set wrap "Wrap lines
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
@@ -216,3 +203,25 @@ au BufNewFile,BufRead *.sv,*.v so ~/.vim/verilog.vim
 
 " Avoid UTF-8 problem
 set nobomb
+
+" Use spaces instead of tabs
+"set expandtab
+
+" Be smart when using tabs
+set smarttab
+
+" 1 tab = 4 spaces
+"set shiftwidth=4
+"set tabstop=8
+
+" GNU Coding style
+setlocal cindent
+setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal textwidth=79
+setlocal fo-=ro fo+=cql
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
