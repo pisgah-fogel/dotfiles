@@ -1,4 +1,7 @@
-﻿set mouse=r " 
+﻿filetype off
+set nocompatible
+
+set mouse=r
 set history=500
 
 " filetype plugins
@@ -45,11 +48,6 @@ syntax enable
 if $COLORTERM == 'truecolor'
     set t_Co=256
 endif
-
-" Set theme
-"colorscheme desert
-colorscheme industry
-"set background=dark
 
 set fileencoding=utf8
 set encoding=utf8
@@ -210,18 +208,36 @@ set nobomb
 " Be smart when using tabs
 set smarttab
 
-" 1 tab = 4 spaces
+" 1 tab = 8 spaces
 "set shiftwidth=4
-"set tabstop=8
+set tabstop=8
 
 " GNU Coding style
-setlocal cindent
-setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
-setlocal shiftwidth=2
-setlocal softtabstop=2
-setlocal textwidth=79
-setlocal fo-=ro fo+=cql
+"set cindent
+"set cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
+"set shiftwidth=8
+"set softtabstop=2
+set textwidth=79
+set wrapmargin=79
+set formatoptions+=t " Turn autowrap on when typing
+set fo-=ro fo+=cql
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
+
+
+" YouCompleteMe autocompletion
+" Enable debugging
+"let g:ycm_keep_logfiles = 1
+"let g:ycm_log_level = 'debug'
+" let g:ycm_....
+let &rtp .= ',' . expand( '<sfile>:p:h' )
+filetype plugin indent on
+
+" Set theme
+"set background=dark
+set background=light
+"colorscheme desert
+"colorscheme industry
+colorscheme PaperColor
