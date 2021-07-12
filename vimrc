@@ -196,6 +196,12 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
+" camelCase to snake_case
+nnoremap <leader>a bve:s#\ \@<!\%V\(\u\)#_\l\1#<CR>`>
+
+" works snake_case to camelCase
+nnoremap <leader><S-a> bve:s#\ \@<!\%V_\(.\)#\u\1#<CR>`>
+
 " Add symtax for verilog
 au BufNewFile,BufRead *.sv,*.v so ~/.vim/verilog.vim
 
