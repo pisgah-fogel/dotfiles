@@ -104,3 +104,5 @@ function prj {
 		echo "No option: $in"
 	fi
 }
+
+export PYTHON3=1
