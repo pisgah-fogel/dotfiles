@@ -238,6 +238,14 @@ set wrap "Wrap lines
 "let g:ycm_keep_logfiles = 1
 "let g:ycm_log_level = 'debug'
 " let g:ycm_....
+"
+" GotodeClaration
+nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+" GotodeFinition
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+" GotoElse...
+nnoremap <leader>ge :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 let &rtp .= ',' . expand( '<sfile>:p:h' )
 filetype plugin indent on
 
@@ -247,3 +255,7 @@ set background=light
 "colorscheme desert
 "colorscheme industry
 colorscheme PaperColor
+
+command! -nargs=+ Grep silent! exe "lgrep -s --include='*.c' --include='*.h' -Prn '".expand("<args>")."' . " | lw | redraw!
+map <F1> evb"1y:Grep <C-R>1
+" TODO add map <F4> ... <cword>
