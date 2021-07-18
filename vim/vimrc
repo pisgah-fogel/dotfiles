@@ -1,5 +1,7 @@
-﻿filetype off
+﻿filetype plugin indent on
 set nocompatible
+
+set backspace=indent,eol,start
 
 set mouse=r
 set history=500
@@ -37,12 +39,15 @@ set cmdheight=1
 
 " Highlight search results
 set hlsearch
+set hls
+set is
 
 " turn magic for regular expression
 set magic
 
 "Enable syntax highlighting
 syntax enable 
+syntax on 
 
 "Enable 256 color palette
 if $COLORTERM == 'truecolor'
