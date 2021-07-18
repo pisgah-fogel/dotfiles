@@ -1,4 +1,3 @@
-﻿filetype plugin indent on
 set nocompatible
 
 set backspace=indent,eol,start
@@ -8,14 +7,7 @@ set history=500
 
 " filetype plugins
 filetype plugin on
-filetype indent on
-
-" use ,w to save
-let mapleader = ","
-nmap <leader>w :w!<cr>
-
-" :W to save the file as sudo
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+filetype plugin indent on
 
 set so=7 " set 7 lines to the cursor when moving with j/k
 
@@ -39,7 +31,6 @@ set cmdheight=1
 
 " Highlight search results
 set hlsearch
-set hls
 set is
 
 " turn magic for regular expression
@@ -62,57 +53,6 @@ set bomb
 set nobackup
 set nowb
 set noswapfile
-
-
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-"vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-"vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <C-space> ?
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
-" Close all the buffers
-map <leader>ba :bufdo bd<cr>
-" Move around buffer
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
-
-" Useful mappings for managing tabs
-" Opens a new tab with the current buffer's path
-map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
-map <leader>tn :tabnew<cr>
-map <S-Tab> :tabnext<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove<cr>
-map <leader>tt :tab terminal<cr>
-map <leader>t<leader> :tabnext<cr> 
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-" terminal mode mappings
-tnoremap <S-Tab> <C-W>:tabnext<CR>
-" Stop forwarding the keystrokes (a or i to go back to bash / sh / shell)
-tnoremap <C-N>   <C-W>N
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers 
 try
@@ -197,16 +137,6 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " Render all spaces in red
 "set syntax=whitespace
 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
-
-" camelCase to snake_case
-nnoremap <leader>a bve:s#\ \@<!\%V\(\u\)#_\l\1#<CR>`>
-
-" works snake_case to camelCase
-nnoremap <leader><S-a> bve:s#\ \@<!\%V_\(.\)#\u\1#<CR>`>
-
 " Add symtax for verilog
 au BufNewFile,BufRead *.sv,*.v so ~/.vim/verilog.vim
 
@@ -228,6 +158,7 @@ set tabstop=8
 "set cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
 "set shiftwidth=8
 "set softtabstop=2
+setlocal colorcolumn=80
 set textwidth=79
 set wrapmargin=79
 set formatoptions+=t " Turn autowrap on when typing
@@ -237,30 +168,124 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+function! EchoWarning(msg)
+	echohl WarningMsg
+	echo "Warning"
+	echohl None
+	echon ': ' a:msg
+endfunction
 
-" YouCompleteMe autocompletion
-" Enable debugging
-"let g:ycm_keep_logfiles = 1
-"let g:ycm_log_level = 'debug'
-" let g:ycm_....
-"
-" GotodeClaration
-nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-" GotodeFinition
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-" GotoElse...
-nnoremap <leader>ge :YcmCompleter GoToDefinitionElseDeclaration<CR>
+if !empty(glob("/usr/share/vim-youcompleteme"))
+	" YouCompleteMe autocompletion
+	" Enable debugging
+	"let g:ycm_keep_logfiles = 1
+	"let g:ycm_log_level = 'debug'
+	" let g:ycm_....
+	"
+	" GotodeClaration
+	nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+	" GotodeFinition
+	nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+	" GotoElse...
+	nnoremap <leader>ge :YcmCompleter GoToDefinitionElseDeclaration<CR>
+	"echomsg "YouCompleteMe OK"
+else
+	call EchoWarning('YouCompleteMe not found')
+endif
 
 let &rtp .= ',' . expand( '<sfile>:p:h' )
-filetype plugin indent on
 
 " Set theme
-"set background=dark
-set background=light
-"colorscheme desert
-"colorscheme industry
-colorscheme PaperColor
+try
+	" desired
+	set background=light
+	colorscheme PaperColor
+catch /^Vim\%((\a\+)\)\=:E185/
+	" failback
+	set background=dark
+	"colorscheme desert
+	colorscheme industry
+endtry
 
+""""""""""""""""""""""""""""""""" Shortcuts """""""""""""""""""""""""""""""""""
+
+" Improved grep
 command! -nargs=+ Grep silent! exe "lgrep -s --include='*.c' --include='*.h' -Prn '".expand("<args>")."' . " | lw | redraw!
+" :W to save the file as sudo
+"command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+
+
+" Grep the word under the cursor
 map <F1> evb"1y:Grep <C-R>1
 " TODO add map <F4> ... <cword>
+
+
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+"map <space> /
+"map <C-space> ?
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Map <C-L> (redraw screen) to also turn off search highlighting until the
+" next search
+nnoremap <C-L> :nohl<CR><C-L>
+
+let mapleader = ","
+" use ,w to save
+nmap <leader>w :w!<cr>
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>:tabclose<cr>gT
+" Close all the buffers
+map <leader>ba :bufdo bd<cr>
+" Move around buffer
+map <leader>l :bnext<cr>
+map <leader>h :bprevious<cr>
+
+" Useful mappings for managing tabs
+" Opens a new tab with the current buffer's path
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+map <leader>tn :tabnew<cr>
+map <S-Tab> :tabnext<cr>
+" terminal mode mappings
+tnoremap <S-Tab> <C-W>:tabnext<CR>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove<cr>
+map <leader>tt :tab terminal<cr>
+map <leader>t<leader> :tabnext<cr> 
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+" Stop forwarding the keystrokes (a or i to go back to bash / sh / shell)
+"tnoremap <C-N>   <C-W>N
+tnoremap <Esc>   <C-W>N
+
+" camelCase to snake_case
+nnoremap <leader>a bve:s#\ \@<!\%V\(\u\)#_\l\1#<CR>`>
+
+" works snake_case to camelCase
+nnoremap <leader><S-a> bve:s#\ \@<!\%V_\(.\)#\u\1#<CR>`>
+
+" Search in the current line (Almost no regex, just \ and ?)
+:nnoremap \ <S-v><Esc>/\%V\V
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+"vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+"vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
